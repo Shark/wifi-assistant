@@ -7,6 +7,7 @@ export default class Uplink extends React.Component {
 
     this.state = {
       bars: 0,
+      connectionStatus: 'unknown',
       technology: '–',
       currentDownload: 0,
       currentUpload: 0,
@@ -26,6 +27,7 @@ export default class Uplink extends React.Component {
         self.setState({
           updatedAt: data['updated_at'],
           bars: data['signal_bars'],
+          connectionStatus: data['connection_status'],
           technology: data['network_type'].toUpperCase(),
           currentDownload: (data['current_download_rate'] / 1024 / 1024).toFixed(1),
           currentUpload: (data['current_upload_rate'] / 1024 / 1024).toFixed(1),
@@ -81,7 +83,7 @@ export default class Uplink extends React.Component {
         <div className="card-content">
           <div className="content has-text-centered">
             <div className="dashboard--bars">{bars}</div>
-            <small>{this.state.technology}</small>
+            <small>{this.state.connectionStatus} ({this.state.technology})</small>
             <table className="table is-narrow dashboard--table">
               <tbody>
                 <tr>
