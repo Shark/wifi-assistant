@@ -59,7 +59,7 @@ module Uplink
     private
 
     def put_session_id
-      return if self.class.cookies['SessionID']
+      self.class.cookies.delete('SessionID')
 
       uri = base_uri.dup.tap do |uri|
         uri.path = '/html/home.html'

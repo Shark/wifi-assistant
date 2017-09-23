@@ -15,4 +15,8 @@ class UplinkStatus < ApplicationRecord
       total_download: traffic_statistics.total_download
     )
   end
+
+  def broadcast
+    ActionCable.server.broadcast "status_uplink_#{uplink_name}", self
+  end
 end
