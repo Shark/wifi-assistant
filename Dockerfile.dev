@@ -1,0 +1,36 @@
+FROM ruby:2.4.1
+
+RUN apt-get update && \
+    apt-get -y --no-install-recommends install unzip apt-transport-https rsync vim && \
+    groupadd --gid 1000 app && \
+    adduser --disabled-login --uid 1000 --gid 1000 --gecos '' app && \
+    rm /etc/localtime && \
+    ln -s /usr/share/zoneinfo/Europe/Berlin /etc/localtime && \
+    wget -qO- https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add - && \
+    echo 'deb https://deb.nodesource.com/node_7.x jessie main' > /etc/apt/sources.list.d/nodesource.list && \
+    apt-get update && \
+    apt-get -y --no-install-recommends install nodejs && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/* && \
+    mkdir ~app/.ssh && \
+    chmod 750 ~app/.ssh && \
+    ssh-keyscan github.com >> ~app/.ssh/known_hosts && \
+    chown -R app:app ~app/.ssh && \
+    mkdir -p /usr/src/app/vendor/engines
+
+USER app
+WORKDIR /usr/src/app
+
+COPY Gemfile* .ruby-version ./
+USER root
+RUN chown -R app:app .
+USER app
+
+ARG SSH_KEY
+RUN (test "$SSH_KEY" && \
+     echo "$SSH_KEY" > ~app/.ssh/id_rsa && \
+     chmod 0600 ~app/.ssh/id_rsa && \
+     bundle install -j 4 ) || \
+     bundle install --local -j 4
+
+COPY . .

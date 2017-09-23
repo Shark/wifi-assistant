@@ -1,0 +1,33 @@
+version: '3'
+services:
+  app: &app
+    image: sh4rk/wifi-assistant
+    build:
+      dockerfile: Dockerfile.dev
+      context: .
+      args:
+        SSH_KEY: ${SSH_KEY:-empty}
+    volumes:
+      - .:/usr/src/app
+      - ${SSH_AUTH_SOCK}:${SSH_AUTH_SOCK}
+    ports:
+      - 3000:3000
+    environment:
+      SSH_AUTH_SOCK: ${SSH_AUTH_SOCK}
+      EDITOR: vim
+    command: rails server -b 0.0.0.0
+    depends_on: [ devdb, testdb ]
+  devdb:
+    image: postgres:9.6
+    environment:
+      POSTGRES_USER: wifi-assistant
+      POSTGRES_PASSWORD: wifi-assistant
+    volumes:
+      - devdb:/var/lib/postgresql
+  testdb:
+    image: postgres:9.6
+    environment:
+      POSTGRES_USER: wifi-assistant
+      POSTGRES_PASSWORD: wifi-assistant
+volumes:
+  devdb:
