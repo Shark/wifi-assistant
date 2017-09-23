@@ -20,8 +20,12 @@ gem 'uglifier', '>= 1.3.0'
 gem 'webpacker'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
+gem 'dotenv-rails'
+gem 'pry-rails'
 
 gem 'hamlit'
+gem 'rails-assets-bulma', source: 'https://rails-assets.org'
+gem 'rails-assets-font-awesome', source: 'https://rails-assets.org'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
