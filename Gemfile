@@ -22,6 +22,9 @@ gem 'webpacker'
 # gem 'therubyracer', platforms: :ruby
 gem 'dotenv-rails'
 gem 'pry-rails'
+gem 'httparty'
+gem 'dry-struct'
+gem 'dry-types'
 
 gem 'hamlit'
 gem 'rails-assets-bulma', source: 'https://rails-assets.org'

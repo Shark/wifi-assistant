@@ -1,0 +1,5 @@
+uplinks:
+  telekom:
+    url: http://192.168.3.1
+  vodafone:
+    url: http://192.168.4.1
