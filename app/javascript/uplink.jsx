@@ -25,12 +25,12 @@ export default class Uplink extends React.Component {
       received: (data) => {
         self.setState({
           updatedAt: data['updated_at'],
-          bars: data['bars'],
-          technology: data['technology'],
-          currentDownload: data['current_download'],
-          currentUpload: data['current_upload'],
-          totalDownload: data['total_download'],
-          totalUpload: data['total_upload']
+          bars: data['signal_bars'],
+          technology: data['network_type'].toUpperCase(),
+          currentDownload: (data['current_download_rate'] / 1024 / 1024).toFixed(1),
+          currentUpload: (data['current_upload_rate'] / 1024 / 1024).toFixed(1),
+          totalDownload: (data['total_download'] / 1024 / 1024).toFixed(1),
+          totalUpload: (data['total_upload'] / 1024 / 1024).toFixed(1)
         })
 
         setInterval(this.forceUpdate.bind(this), 5000);
