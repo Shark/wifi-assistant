@@ -15,6 +15,7 @@ module Clockwork
 
   every(30.seconds, 'update_connection_status') do
     UpdateConnectionStatus.perform_later
+    UpdateLocation.perform_later
   end
 
   every(5.minutes, 'update_speed_test') do

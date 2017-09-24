@@ -22,6 +22,11 @@ class StatusChannel < ApplicationCable::Channel
       order('updated_at DESC').
       first&.
       broadcast
+    elsif type == 'location'
+      Location.
+      order('updated_at DESC').
+      first&.
+      broadcast
     end
   end
 end
