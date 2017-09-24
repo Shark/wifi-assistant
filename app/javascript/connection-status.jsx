@@ -8,7 +8,7 @@ export default class ConnectionStatus extends React.Component {
     this.state = {
       updatedAt: null,
       isWorking: false,
-      uplinkName: '–'
+      provider: '–'
     }
   }
 
@@ -23,7 +23,7 @@ export default class ConnectionStatus extends React.Component {
         self.setState({
           updatedAt: data['updated_at'],
           isWorking: data['is_working'],
-          uplinkName: data['uplink_name']
+          provider: data['provider']
         })
 
         setInterval(this.forceUpdate.bind(this), 5000);
@@ -62,7 +62,7 @@ export default class ConnectionStatus extends React.Component {
                 <i className={`fa fa-3x ${iconClass}`} aria-hidden="true"></i>
               </span>
             </p>
-            <p className="has-text-centered">{this.state.uplinkName}</p>
+            <p className="has-text-centered">{this.state.provider}</p>
           </div>
         </div>
       </div>

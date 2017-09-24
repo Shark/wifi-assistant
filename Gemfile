@@ -28,6 +28,7 @@ gem 'dry-types'
 gem 'delayed_job_active_record'
 gem 'daemons'
 gem 'clockwork'
+gem 'net-dns'
 
 gem 'hamlit'
 gem 'rails-assets-bulma', source: 'https://rails-assets.org'

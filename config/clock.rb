@@ -12,4 +12,8 @@ module Clockwork
       UpdateUplinkStatus.perform_later uplink_name
     end
   end
+
+  every(30.seconds, 'update_connection_status') do
+    UpdateConnectionStatus.perform_later
+  end
 end

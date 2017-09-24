@@ -12,6 +12,11 @@ class StatusChannel < ApplicationCable::Channel
       order('updated_at DESC').
       first&.
       broadcast
+    elsif type == 'connection'
+      ConnectionStatus.
+      order('updated_at DESC').
+      first&.
+      broadcast
     end
   end
 end
