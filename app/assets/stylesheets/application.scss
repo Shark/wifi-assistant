@@ -67,3 +67,16 @@
 .dashboard--table {
   margin-top: 1.5em;
 }
+
+.dashboard--speed-test {
+  text-align: center;
+
+  dt, dd {
+    line-height: 14px;
+    display:inline;
+  }
+
+  dd {
+    vertical-align: super;
+  }
+}

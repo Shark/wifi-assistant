@@ -17,6 +17,11 @@ class StatusChannel < ApplicationCable::Channel
       order('updated_at DESC').
       first&.
       broadcast
+    elsif type == 'speed_test'
+      SpeedTest.
+      order('updated_at DESC').
+      first&.
+      broadcast
     end
   end
 end

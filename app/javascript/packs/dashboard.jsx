@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 
 import ConnectionStatus from 'connection-status'
 import Uplink from 'uplink'
+import SpeedTest from 'speed-test'
 
 document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(
@@ -11,6 +12,9 @@ document.addEventListener('DOMContentLoaded', () => {
         <div className="column"><ConnectionStatus /></div>
         <div className="column"><Uplink name="telekom" friendlyName="Telekom" /></div>
         <div className="column"><Uplink name="vodafone" friendlyName="Vodafone" /></div>
+      </div>
+      <div className="columns">
+        <div className="column"><SpeedTest /></div>
       </div>
     </section>,
     document.body.appendChild(document.createElement('div')),
