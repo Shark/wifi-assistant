@@ -1,6 +1,6 @@
 require "net/dns"
 
-class ConnectionStatus
+class ConnectionStatus < ApplicationRecord
   class API
     include HTTParty
 

@@ -1,5 +1,5 @@
 class ConnectionStatus < ApplicationRecord
-  validates :is_working, presence: true
+  validates :is_working, inclusion: { in: [true, false] }
 
   def broadcast
     ActionCable.server.broadcast "status_connection", self
